@@ -15,7 +15,19 @@ var MongoClient = require('mongodb').MongoClient,
 var url = config.dbInfo.url;
 
 router.get('/', function(req, res) {
-    res.send('ok')
+  res.render('templates/index', {
+    layout: '../static/templates/layout.ejs',
+    err: '系统错误'
+  });
 })
+
+
+router.get('/222', function(req, res) {
+  res.render('templates/222', {
+    layout: '../static/templates/layout.ejs',
+    err: '系统错误'
+  });
+})
+
 
 module.exports = router;

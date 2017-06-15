@@ -1,13 +1,14 @@
-<script src="/js/socket.io.js"></script>
+<script src="http://chatio.herokuapp.com/socket.io/socket.io.js"></script>
 <script language="javascript"type="text/javascript">
     var socket = io('ws://127.0.0.1:3000', { transports: ['websocket'] })
     socket.on('connect', function() {
       console.log('connected')
 
-      //111用户连接socket
-      socket.emit('new user', '111');
+      //222用户连接socket
+      socket.emit('new user', '222');
 
-      socket.on('to111', function(data) {
+      //接收来自其他向自己的消息
+      socket.on('to222', function(data) {
         console.log(data)
       })
 
@@ -15,9 +16,9 @@
 
     function sendMessage() {
       socket.emit('chat', {
-        from: '11',
-        to: 'andrioid111',
-        message: 'hello world andrioid111'
+        from: '222',
+        to: '111',
+        message: 'hello world 11'
       });
     }
 </script>

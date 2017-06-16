@@ -49,11 +49,11 @@ export default class MyScene extends Component {
 
     if(this.props.route.index == 1) {
       return (
-        <Loginsecond navigator={navigator} phone={this.state.phone}></Loginsecond>
+        <Loginsecond navigator={navigator} phone={this.state.phone} back={this.onBackAndroid}></Loginsecond>
       )
     }else {
       return (
-        <Loginfirst navigator={navigator} phone={this.state.phone}></Loginfirst>
+        <Loginfirst navigator={navigator} phone={this.state.phone} back={this.onBackAndroid}></Loginfirst>
       )
     }
 

@@ -1,18 +1,26 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableHighlight, BackAndroid, ToastAndroid} from 'react-native';
+import { View, Text, TouchableHighlight, BackHandler, ToastAndroid, TextInput} from 'react-native';
+
+import  Loginfirst  from './loginfirst';
+import  Loginsecond  from './loginsecond';
 
 export default class MyScene extends Component {
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    onForward: PropTypes.func.isRequired,
-    onBack: PropTypes.func.isRequired,
+
+  constructor() {
+    super()
+    this.state = {
+      phone: '',
+      password: ''
+    }
   }
+
+
   componentWillMount() {
-    BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+    BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
   }
 
   componentWillUnmount() {
-    BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
   }
 
   onBackAndroid = () => {
@@ -20,14 +28,10 @@ export default class MyScene extends Component {
     if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
 
       //最近2秒内按过back键，可以退出应用。
-
       return false;
-
     }
 
     this.lastBackPressed = Date.now();
-
-    console.warn(this.props.route.index)
 
     if (this.props.route && this.props.route.index > 0) {
       this.props.navigator.pop();
@@ -39,16 +43,28 @@ export default class MyScene extends Component {
 
   }
 
+  _renderPage() {
+
+    const navigator = this.props.navigator;
+
+    if(this.props.route.index == 1) {
+      return (
+        <Loginsecond navigator={navigator} phone={this.state.phone}></Loginsecond>
+      )
+    }else {
+      return (
+        <Loginfirst navigator={navigator} phone={this.state.phone}></Loginfirst>
+      )
+    }
+
+
+  }
+
   render() {
     return (
       <View>
-        <Text>Current Scene: { this.props.title }</Text>
-        <TouchableHighlight onPress={this.props.onForward}>
-          <Text>点我进入下一场景</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.props.onBack}>
-          <Text>点我返回上一场景</Text>
-        </TouchableHighlight>
+        {this._renderPage()}
+
       </View>
     )
   }

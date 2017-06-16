@@ -1,4 +1,9 @@
+
+import io from 'socket.io-client';
+
 const BASE_URL = 'http://172.168.22.18:8000';
+const CHAT_URL = 'ws://172.16.1.21:3000';
+
 let query = {
   get: function(url, succcb, errcb) {
     var request = new XMLHttpRequest();
@@ -53,6 +58,9 @@ let query = {
     //post请求要自己设置请求头
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send(params_str);
+  },
+  socket: function() {
+    return io(CHAT_URL, {transports: ['websocket']});
   }
 }
 

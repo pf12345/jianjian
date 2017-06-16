@@ -10,7 +10,6 @@ var ioEvents = function(io) {
     console.log('socket is connection');
 
     socket.on('new user', function(data) {
-      console.log(data);
       if (users[data]) {
         users[data] = socket;
       } else {

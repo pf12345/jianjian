@@ -22,13 +22,12 @@
  import Friends from './components/friends'
  import User from './components/user'
 
- import io from 'socket.io-client';
+ import query from './query'
 
- var socket = io('ws://172.16.1.21:3000', {transports: ['websocket']});
+ var socket = query.socket();
 
  socket.on('connect', function() {
    console.warn('connected')
-
    //andrioid111用户连接socket
    socket.emit('new user', 'andrioid111');
 

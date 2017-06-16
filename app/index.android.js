@@ -14,71 +14,20 @@
    Image
  } from 'react-native';
 
+ import Main from './components/main'
+ import SimpleNavigationApp from './components/login'
+
  import Dimensions from 'Dimensions'
-
- import Navigator from './components/TabNavigator'
- import Home from './components/home'
- import Chat from './components/chat'
- import Friends from './components/friends'
- import User from './components/user'
-
- import query from './query'
-
- var socket = query.socket();
-
- socket.on('connect', function() {
-   console.warn('connected')
-   //andrioid111用户连接socket
-   socket.emit('new user', 'andrioid111');
-
-   socket.on('toandrioid111', function(data) {
-     console.warn(JSON.stringify(data));
-   })
- })
 
  class app extends Component {
    constructor() {
      super()
-     this.state = {
-       selectedTab: 'position',
-     };
    }
-   _renderPage() {
 
-     switch (this.state.selectedTab) {
-        case 'position':
-          return (<Home></Home>)
-          break;
-        case 'user':
-          return (<User></User>)
-          break;
-        case 'chat':
-          return (<Chat></Chat>)
-          break;
-        case 'friend':
-          return (<Friends></Friends>)
-          break;
-       default:
-
-     }
-     if(this.state.selectedTab == 'position') {
-       return (<Home></Home>)
-     }else {
-       return(<Text>123212312</Text>)
-     }
-   }
-   _navigaterPress(selected){
-     this.setState({
-       selectedTab: selected
-     })
-   }
    render() {
      return (
       <View style={styles.warp}>
-        <View>
-          {this._renderPage()}
-        </View>
-        <Navigator chatNum="5" onItemPress={this._navigaterPress.bind(this)} initSelected="position"></Navigator>
+        <SimpleNavigationApp></SimpleNavigationApp>
       </View>
 
      );

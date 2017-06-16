@@ -23,11 +23,11 @@ export default class User extends Component {
   _renderSex() {
     if(this.state.sex == 'man') {
       return (
-        <Image style={{height: 12, width: 12, marginTop: 3}} source={require('./../images/man.png')} />
+        <Image style={{height: 12, width: 12, marginTop: 3}} source={require('./../../images/man.png')} />
       )
     }else{
       return (
-        <Image style={{height: 12, width: 12, marginTop: 3}} source={require('./../images/woman.png')} />
+        <Image style={{height: 12, width: 12, marginTop: 3}} source={require('./../../images/woman.png')} />
       )
     }
   }

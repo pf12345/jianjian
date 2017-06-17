@@ -3,18 +3,12 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, ListView, TextInput, Button, TouchableNativeFeedback } from 'react-native';
 
 import Dimensions from 'Dimensions';
+import Cbtton from './../cbutton'
 
 
 export default class Loginsecond extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      password: ''
-    }
-  }
-
-  _pressButton() {
-
   }
 
   render() {
@@ -27,17 +21,18 @@ export default class Loginsecond extends Component {
             </TouchableNativeFeedback>
           </View>
 
-          <Text style={{color: '#fff', fontSize: 16, marginLeft: 5}}>登录－密码</Text>
+          <Text style={{color: '#fff', fontSize: 16, marginLeft: 5}}>注册－密码</Text>
         </View>
         <View style={{marginTop: 80}}>
           <TextInput placeholder="请输入密码"
           secureTextEntry={true}
+          value={this.props.password}
           style={{borderBottomColor: "#f05f48"}}
-          onChangeText={(text) => this.state.password = text}
+          onChangeText={(text) => this.props.setPassword(text)}
           style={{marginBottom: 50}}/>
         </View>
 
-        <Button title="登录" color="#f05f48" onPress={this._pressButton} />
+        <Cbtton title="注册" color="#f05f48" onPress={this.props.register} ></Cbtton>
       </View>
 
     );
@@ -48,7 +43,8 @@ const styles = StyleSheet.create({
   warp: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    padding: 20
+    padding: 20,
+    backgroundColor: '#fff'
   },
   top: {
     width: Dimensions.get('window').width,

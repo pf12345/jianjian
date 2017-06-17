@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, View, Text, Image, ListView, TextInput, Button, ToastAndroid } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput,
+  ToastAndroid,
+  TouchableNativeFeedback
+} from 'react-native';
 
 import Dimensions from 'Dimensions';
+import Cbtton from './../cbutton'
 
 
 
@@ -17,11 +26,11 @@ export default class Loginfirst extends Component {
 
   _pressButton = () => {
     const navigator = this.props.navigator;
-    if(this.state.phone) {
+    if(this.props.phone) {
       if (navigator) {
         navigator.push({
           name: 'Loginsecond',
-          index: 1
+          index: 2
         })
       }
     }else{
@@ -29,20 +38,39 @@ export default class Loginfirst extends Component {
     }
   }
 
+  componentWillMount() {
+    this.setState({
+      phone: this.props.phone
+    })
+  }
+
   render() {
+
     return (
       <View style={styles.warp}>
         <View style={styles.top} onPress={this.props.back}>
-          <Text style={{color: '#fff', fontSize: 16, marginLeft: 5}}>登录－手机号</Text>
+          <View style={{padding: 4}}>
+            <TouchableNativeFeedback onPress={this.props.back}>
+              <Image style={{height: 16, width: 16}} source={require('./../../images/back.png')} />
+            </TouchableNativeFeedback>
+          </View>
+          <Text style={{color: '#fff', fontSize: 16, marginLeft: 5}}>注册－手机号</Text>
         </View>
         <View style={{marginTop: 80}}>
           <TextInput placeholder="请输入手机号码"
           style={{borderBottomColor: "#f05f48"}}
-          onChangeText={(text) => this.state.phone = text}
+          keyboardType="numeric"
+          value={this.state.phone}
+          onChangeText={(text) => {
+            this.props.setPhone(text)
+            this.setState({
+              phone: text
+            })
+          }}
           style={{marginBottom: 50}}/>
         </View>
 
-        <Button title="下一步" color="#f05f48" onPress={this._pressButton} />
+        <Cbtton title="下一步" onPress={this._pressButton} ></Cbtton>
       </View>
 
     );
@@ -53,7 +81,8 @@ const styles = StyleSheet.create({
   warp: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    padding: 20
+    padding: 20,
+    backgroundColor: '#fff'
   },
   top: {
     width: Dimensions.get('window').width,

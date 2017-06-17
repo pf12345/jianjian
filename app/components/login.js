@@ -11,10 +11,40 @@ export default class SimpleNavigationApp extends Component {
     super()
     this.state = {
       navigators: [],
-      route: ''
+      route: '',
+      phone: '',
+      password: ''
     };
   }
 
+  _setPhone(phone) {
+    this.setState({
+      phone: phone
+    })
+  }
+
+  _setPassword(password) {
+    this.setState({
+      password: password
+    })
+  }
+
+  _login() {
+    console.warn((this.state.phone));
+    console.warn((this.state.password));
+  }
+
+  _register() {
+    console.warn((this.state.phone));
+    console.warn((this.state.password));
+  }
+
+  _clearData() {
+    this.setState({
+      phone: '',
+      password: ''
+    })
+  }
 
   render() {
     return (
@@ -27,6 +57,8 @@ export default class SimpleNavigationApp extends Component {
         title={route.title}
         navigator={navigator}
         route={route}
+        phone={this.state.phone}
+        password={this.state.password}
         // Function to call when a new scene should be displayed
         onForward={ () => {
           const nextIndex = route.index + 1;
@@ -35,6 +67,11 @@ export default class SimpleNavigationApp extends Component {
             index: nextIndex,
           });
         }}
+        login={this._login.bind(this)}
+        register={this._register.bind(this)}
+        setPhone={this._setPhone.bind(this)}
+        setPassword={this._setPassword.bind(this)}
+        clearData={this._clearData.bind(this)}
 
         // Function to call to go back to the previous scene
         onBack={() => {

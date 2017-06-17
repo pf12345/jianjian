@@ -60,11 +60,6 @@
        default:
 
      }
-     if(this.state.selectedTab == 'position') {
-       return (<Home></Home>)
-     }else {
-       return(<Text>123212312</Text>)
-     }
    }
    _navigaterPress(selected){
      this.setState({

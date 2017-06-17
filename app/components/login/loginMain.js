@@ -10,10 +10,6 @@ import Cbtton from './../cbutton'
 export default class Loginmain extends Component {
   constructor() {
     super();
-    this.state = {
-      phone: '',
-      password: ''
-    }
   }
 
   _goRegister() {
@@ -42,11 +38,9 @@ export default class Loginmain extends Component {
           <TextInput placeholder="手机号"
           underlineColorAndroid="transparent"
           keyboardType="numeric"
-          value={this.state.phone}
+          value={this.props.phone}
           onChangeText={(text) => {
-            this.setState({
-              phone: text
-            })
+            this.props.setPhone(text)
           }}/>
           <View style={styles.borderLine}></View>
           <TextInput placeholder="密码"
@@ -54,9 +48,7 @@ export default class Loginmain extends Component {
           value={this.props.password}
           underlineColorAndroid="transparent"
           onChangeText={(text) => {
-            this.setState({
-              password: text
-            })
+            this.props.setPassword(text)
           }}/>
           <View style={styles.borderLine}></View>
         </View>

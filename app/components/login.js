@@ -30,8 +30,9 @@ export default class SimpleNavigationApp extends Component {
   }
 
   _login() {
-    console.warn((this.state.phone));
-    console.warn((this.state.password));
+    // console.warn((this.state.phone));
+    // console.warn((this.state.password));
+    this.props.setUser()
   }
 
   _register() {

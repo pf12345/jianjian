@@ -14,6 +14,9 @@ export default class MyScene extends Component {
 
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
+    if(this.props.route.index == 0) {
+      this.props.clearData();
+    }
   }
 
   componentWillUnmount() {
@@ -74,6 +77,7 @@ export default class MyScene extends Component {
         <Loginfirst navigator={navigator} phone={this.props.phone} back={this.onBackAndroid.bind(this)} setPhone={this._setPhone.bind(this)}></Loginfirst>
       )
     }else{
+
       return (
         <Loginmain navigator={navigator} phone={this.props.phone} password={this.props.password}
         setPhone={this._setPhone.bind(this)}

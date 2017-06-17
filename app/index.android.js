@@ -22,12 +22,39 @@
  class app extends Component {
    constructor() {
      super()
+     this.state = {
+       user: {
+         _id: '',
+         nickname: '',
+         avatar: ''
+       }
+     }
+   }
+
+   _renderPage() {
+     if(this.state.user._id) {
+       return(
+         <Main></Main>
+       )
+     }else {
+       return(
+         <SimpleNavigationApp setUser={this._setUser.bind(this)}></SimpleNavigationApp>
+       )
+     }
+   }
+
+   _setUser() {
+     this.setState({
+       user: {
+         _id: '123123'
+       }
+     })
    }
 
    render() {
      return (
       <View style={styles.warp}>
-        <SimpleNavigationApp></SimpleNavigationApp>
+        {this._renderPage()}
       </View>
 
      );
